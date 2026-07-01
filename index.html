@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <svg class="logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="logoGrad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stop-color="#ffd700"/>
+                        <stop offset="1" stop-color="#60a5fa"/>
+                    </linearGradient>
+                </defs>
+                <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#logoGrad)"/>
+                <path d="M24 12 L27 20 L35 23 L27 26 L24 34 L21 26 L13 23 L21 20 Z" fill="#1e3a8a"/>
+                <circle cx="35" cy="12" r="3" fill="#1e3a8a"/>
+            </svg>
+            <h1>Prompt Generator</h1>
+        </div>
+
+        <div class="header-actions">
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <nav>
+            <ul id="navList">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#generator" class="nav-link">Generator</a></li>
+                <li><a href="#categories" class="nav-link">Categories</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#feedback" class="nav-link">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h2>Create Perfect AI Prompts</h2>
+        <p class="tagline">Tell us what you need and generate the best prompt instantly.</p>
+
+        <a href="#generator">
+           <button>Get Started</button>
+       </a>
+
+        <div id="how-it-works">
+            <h3>How To Use This Website</h3>
+            <p>Follow these four simple steps to turn your idea into a ready-to-use AI prompt.</p>
+
+            <div class="steps">
+
+                <div class="step">
+                    <span class="step-number">STEP 1</span>
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h13l3 3v13H4z"/>
+                            <line x1="8" y1="9" x2="16" y2="9"/>
+                            <line x1="8" y1="13" x2="16" y2="13"/>
+                            <line x1="8" y1="17" x2="12" y2="17"/>
+                        </svg>
+                    </div>
+                    <h4>Describe</h4>
+                    <p>Go to the Generator section and type what you need in the requirement box.</p>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">STEP 2</span>
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="16" rx="2"/>
+                            <line x1="3" y1="9" x2="21" y2="9"/>
+                            <line x1="8" y1="14" x2="8" y2="14"/>
+                            <line x1="12" y1="14" x2="16" y2="14"/>
+                        </svg>
+                    </div>
+                    <h4>Choose</h4>
+                    <p>Pick a category like Writing or Coding, then select a tone or persona.</p>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">STEP 3</span>
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13 2 3 14h7l-1 8 10-12h-7z"/>
+                        </svg>
+                    </div>
+                    <h4>Generate</h4>
+                    <p>Click "Generate Prompt" and your custom AI prompt appears instantly.</p>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">STEP 4</span>
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="11" height="11" rx="2"/>
+                            <path d="M5 15V5a2 2 0 0 1 2-2h10"/>
+                        </svg>
+                    </div>
+                    <h4>Copy &amp; Use</h4>
+                    <p>Hit "Copy Prompt" and paste it directly into your favorite AI tool.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="generator">
+
+        <h2 class="section-title">Generate Your Prompt</h2>
+
+        <form id="promptForm">
+
+            <label for="requirement">Your Requirement</label>
+
+            <textarea
+                id="requirement"
+                rows="5"
+                placeholder="Describe what you need..."
+                required></textarea>
+
+            <label for="category">Category</label>
+
+            <select id="category">
+                <option>Writing</option>
+                <option>Coding</option>
+                <option>Study</option>
+                <option>Image Generation</option>
+                <option>Marketing</option>
+            </select>
+
+            <label for="tone">Persona</label>
+
+            <select id="tone">
+                <option>Professional</option>
+                <option>Friendly</option>
+                <option>Creative</option>
+                <option>Formal</option>
+            </select>
+
+            <button type="submit" id="generateBtn">
+                Generate Prompt
+            </button>
+
+        </form>
+
+    </section>
+
+    <section>
+
+        <h2 class="section-title">Generated Prompt</h2>
+
+        <div>
+            <p id="output">
+                Your generated prompt will appear here.
+            </p>
+        </div>
+
+        <div class="center-btn">
+            <button type="button" id="copyBtn">
+                Copy Prompt
+            </button>
+        </div>
+
+    </section>
+
+    <section id="categories">
+
+        <h2 class="section-title">Popular Categories</h2>
+
+        <article>
+            <h3>Writing</h3>
+            <p>Create essays, blogs, emails, stories and articles.</p>
+        </article>
+
+        <article>
+            <h3>Coding</h3>
+            <p>Generate prompts for HTML, CSS, JavaScript, Python and more.</p>
+        </article>
+
+        <article>
+            <h3>Image Generation</h3>
+            <p>Create AI image prompts for realistic, anime and creative art.</p>
+        </article>
+
+    </section>
+
+    <section id="features">
+
+        <h2 class="section-title">Why Choose Us?</h2>
+
+        <ul>
+            <li>⚡ Fast Prompt Generation</li>
+            <li>📋 One Click Copy</li>
+            <li>🤖 AI Ready Prompts</li>
+            <li>📚 Multiple Categories</li>
+            <li>🎯 Beginner Friendly</li>
+        </ul>
+
+    </section>
+
+    <section id="feedback">
+
+        <h2>Feedback</h2>
+
+        <form
+            id="feedbackForm"
+            action="https://api.web3forms.com/submit" method="POST">
+
+            <input type="hidden" name="access_key" value="1f840036-794b-41ef-b2ef-b0d0de3e8c67">
+
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="message">Feedback</label>
+            <textarea id="message" name="message" rows="5" placeholder="Write your feedback..." required></textarea>
+
+            <button type="submit">
+                Submit Feedback
+            </button>
+
+        </form>
+
+    </section>
+
+    <footer>
+        <p>© 2026 Prompt Generator. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
