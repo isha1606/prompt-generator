@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate ready-to-use AI prompts for writing, coding, study, image generation and marketing in seconds.">
     <title>Prompt Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div class="scroll-progress" id="scrollProgress"></div>
 
     <header>
         <div class="brand">
@@ -34,30 +40,40 @@
 
         <nav>
             <ul id="navList">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#generator" class="nav-link">Generator</a></li>
-                <li><a href="#categories" class="nav-link">Categories</a></li>
-                <li><a href="#features" class="nav-link">Features</a></li>
-                <li><a href="#feedback" class="nav-link">Feedback</a></li>
+                <li><a href="#home" class="nav-link" data-nav="home">Home</a></li>
+                <li><a href="#generator" class="nav-link" data-nav="generator">Generator</a></li>
+                <li><a href="#categories" class="nav-link" data-nav="categories">Categories</a></li>
+                <li><a href="#features" class="nav-link" data-nav="features">Features</a></li>
+                <li><a href="#faq" class="nav-link" data-nav="faq">FAQ</a></li>
+                <li><a href="#feedback" class="nav-link" data-nav="feedback">Feedback</a></li>
             </ul>
         </nav>
     </header>
 
+    <div class="backdrop" id="backdrop"></div>
+
     <section id="home">
-        <h2>Create Perfect AI Prompts</h2>
-        <p class="tagline">Tell us what you need and generate the best prompt instantly.</p>
+        <div class="hero-badge reveal">✨ AI-powered prompt engineering</div>
+        <h2 class="reveal">Create Perfect AI Prompts</h2>
+        <p class="tagline reveal">Tell us what you need and generate the best prompt instantly.</p>
 
         <a href="#generator">
-           <button>Get Started</button>
+           <button class="cta-btn reveal">Get Started</button>
        </a>
 
+        <div class="hero-stats reveal">
+            <div><strong id="statCount">0</strong><span>Prompts generated this session</span></div>
+            <div><strong>5</strong><span>Categories</span></div>
+            <div><strong>4</strong><span>Persona tones</span></div>
+        </div>
+
         <div id="how-it-works">
-            <h3>How To Use This Website</h3>
-            <p>Follow these four simple steps to turn your idea into a ready-to-use AI prompt.</p>
+            <h3 class="reveal">How To Use This Website</h3>
+            <p class="reveal">Follow these four simple steps to turn your idea into a ready-to-use AI prompt.</p>
 
             <div class="steps">
 
-                <div class="step">
+                <div class="step reveal">
                     <span class="step-number">STEP 1</span>
                     <div class="icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -71,7 +87,7 @@
                     <p>Go to the Generator section and type what you need in the requirement box.</p>
                 </div>
 
-                <div class="step">
+                <div class="step reveal">
                     <span class="step-number">STEP 2</span>
                     <div class="icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -85,7 +101,7 @@
                     <p>Pick a category like Writing or Coding, then select a tone or persona.</p>
                 </div>
 
-                <div class="step">
+                <div class="step reveal">
                     <span class="step-number">STEP 3</span>
                     <div class="icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -96,7 +112,7 @@
                     <p>Click "Generate Prompt" and your custom AI prompt appears instantly.</p>
                 </div>
 
-                <div class="step">
+                <div class="step reveal">
                     <span class="step-number">STEP 4</span>
                     <div class="icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -114,104 +130,174 @@
 
     <section id="generator">
 
-        <h2 class="section-title">Generate Your Prompt</h2>
+        <h2 class="section-title reveal">Generate Your Prompt</h2>
+        <p class="section-sub reveal">Fill in the details below and let the generator do the rest.</p>
 
-        <form id="promptForm">
+        <div class="generator-grid">
 
-            <label for="requirement">Your Requirement</label>
+            <form id="promptForm" class="reveal">
 
-            <textarea
-                id="requirement"
-                rows="5"
-                placeholder="Describe what you need..."
-                required></textarea>
+                <label for="requirement">Your Requirement</label>
 
-            <label for="category">Category</label>
+                <textarea
+                    id="requirement"
+                    rows="5"
+                    maxlength="400"
+                    placeholder="Describe what you need..."
+                    required></textarea>
+                <div class="char-count"><span id="charCount">0</span>/400</div>
 
-            <select id="category">
-                <option>Writing</option>
-                <option>Coding</option>
-                <option>Study</option>
-                <option>Image Generation</option>
-                <option>Marketing</option>
-            </select>
+                <label for="category">Category</label>
 
-            <label for="tone">Persona</label>
+                <select id="category">
+                    <option>Writing</option>
+                    <option>Coding</option>
+                    <option>Study</option>
+                    <option>Image Generation</option>
+                    <option>Marketing</option>
+                </select>
 
-            <select id="tone">
-                <option>Professional</option>
-                <option>Friendly</option>
-                <option>Creative</option>
-                <option>Formal</option>
-            </select>
+                <label for="tone">Persona</label>
 
-            <button type="submit" id="generateBtn">
-                Generate Prompt
-            </button>
+                <select id="tone">
+                    <option>Professional</option>
+                    <option>Friendly</option>
+                    <option>Creative</option>
+                    <option>Formal</option>
+                </select>
 
-        </form>
+                <div class="form-btn-row">
+                    <button type="submit" id="generateBtn">
+                        <span class="btn-label">Generate Prompt</span>
+                        <span class="spinner" id="generateSpinner"></span>
+                    </button>
+                    <button type="button" id="clearBtn" class="ghost-btn">Clear</button>
+                </div>
+
+            </form>
+
+            <aside class="history-panel reveal">
+                <h4>Recent Prompts</h4>
+                <p class="history-empty" id="historyEmpty">Your last few prompts from this session will show up here.</p>
+                <ul id="historyList"></ul>
+            </aside>
+
+        </div>
 
     </section>
 
-    <section>
+    <section id="output-section">
 
-        <h2 class="section-title">Generated Prompt</h2>
+        <h2 class="section-title reveal">Generated Prompt</h2>
 
-        <div>
-            <p id="output">
-                Your generated prompt will appear here.
-            </p>
+        <div class="output-card reveal">
+            <p id="output">Your generated prompt will appear here.</p>
         </div>
 
-        <div class="center-btn">
+        <div class="center-btn reveal">
             <button type="button" id="copyBtn">
-                Copy Prompt
+                <span class="btn-label">Copy Prompt</span>
             </button>
+            <button type="button" id="downloadBtn" class="ghost-btn">Download .txt</button>
         </div>
 
     </section>
 
     <section id="categories">
 
-        <h2 class="section-title">Popular Categories</h2>
+        <h2 class="section-title reveal">Popular Categories</h2>
 
-        <article>
-            <h3>Writing</h3>
-            <p>Create essays, blogs, emails, stories and articles.</p>
-        </article>
+        <div class="categories-grid">
+            <article class="reveal">
+                <h3>Writing</h3>
+                <p>Create essays, blogs, emails, stories and articles.</p>
+            </article>
 
-        <article>
-            <h3>Coding</h3>
-            <p>Generate prompts for HTML, CSS, JavaScript, Python and more.</p>
-        </article>
+            <article class="reveal">
+                <h3>Coding</h3>
+                <p>Generate prompts for HTML, CSS, JavaScript, Python and more.</p>
+            </article>
 
-        <article>
-            <h3>Image Generation</h3>
-            <p>Create AI image prompts for realistic, anime and creative art.</p>
-        </article>
+            <article class="reveal">
+                <h3>Image Generation</h3>
+                <p>Create AI image prompts for realistic, anime and creative art.</p>
+            </article>
+        </div>
 
     </section>
 
     <section id="features">
 
-        <h2 class="section-title">Why Choose Us?</h2>
+        <h2 class="section-title reveal">Why Choose Us?</h2>
 
         <ul>
-            <li>⚡ Fast Prompt Generation</li>
-            <li>📋 One Click Copy</li>
-            <li>🤖 AI Ready Prompts</li>
-            <li>📚 Multiple Categories</li>
-            <li>🎯 Beginner Friendly</li>
+            <li class="reveal">⚡ Fast Prompt Generation</li>
+            <li class="reveal">📋 One Click Copy</li>
+            <li class="reveal">🤖 AI Ready Prompts</li>
+            <li class="reveal">📚 Multiple Categories</li>
+            <li class="reveal">🎯 Beginner Friendly</li>
         </ul>
+
+    </section>
+
+
+    <section id="faq">
+
+        <h2 class="section-title reveal">Frequently Asked Questions</h2>
+
+        <div class="accordion reveal">
+
+            <div class="accordion-item">
+                <button class="accordion-trigger">
+                    Is this website free to use?
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-panel">
+                    <p>Yes. Generating prompts, copying them, and downloading them as text files is completely free.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-trigger">
+                    Does it save my prompts after I close the tab?
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-panel">
+                    <p>Recent prompts are kept only for your current visit so you can quickly reuse them. They are not stored anywhere once you close or refresh the page.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-trigger">
+                    Which AI tools can I use the generated prompt with?
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-panel">
+                    <p>Any AI chat tool. Just copy the prompt and paste it in wherever you normally chat with your AI assistant.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-trigger">
+                    Can I suggest a new category or feature?
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-panel">
+                    <p>Absolutely — use the Feedback form below and let us know what you'd like to see next.</p>
+                </div>
+            </div>
+
+        </div>
 
     </section>
 
     <section id="feedback">
 
-        <h2>Feedback</h2>
+        <h2 class="reveal">Feedback</h2>
 
         <form
             id="feedbackForm"
+            class="reveal"
             action="https://api.web3forms.com/submit" method="POST">
 
             <input type="hidden" name="access_key" value="1f840036-794b-41ef-b2ef-b0d0de3e8c67">
@@ -234,8 +320,21 @@
     </section>
 
     <footer>
-        <p>© 2026 Prompt Generator. All Rights Reserved.</p>
+        <div class="footer-content">
+            <div class="footer-brand">Prompt Generator</div>
+            <ul class="footer-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#generator">Generator</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#feedback">Feedback</a></li>
+            </ul>
+        </div>
+        <p class="footer-copy">© 2026 Prompt Generator. All Rights Reserved.</p>
     </footer>
+
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
+
+    <div class="toast-container" id="toastContainer"></div>
 
     <script src="script.js"></script>
 </body>
